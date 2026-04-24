@@ -1,0 +1,110 @@
+{
+  "name": "path-to-terminal",
+  "displayName": "Path to Terminal",
+  "description": "Send file paths and line references to the terminal so you can keep building commands without copy-paste friction.",
+  "version": "0.0.2",
+  "publisher": "danbi2990",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danbi2990/path-to-terminal.git"
+  },
+  "homepage": "https://github.com/danbi2990/path-to-terminal#readme",
+  "bugs": {
+    "url": "https://github.com/danbi2990/path-to-terminal/issues"
+  },
+  "icon": "resources/icon.png",
+  "galleryBanner": {
+    "color": "#1B140F",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:path-to-terminal.sendAbsoluteSelectionToTerminal",
+    "onCommand:path-to-terminal.sendAbsoluteFilePathToTerminal",
+    "onCommand:path-to-terminal.sendLastActiveFilePathToTerminal"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "path-to-terminal.sendAbsoluteSelectionToTerminal",
+        "title": "Send Selection to Terminal (Absolute Path)"
+      },
+      {
+        "command": "path-to-terminal.sendAbsoluteFilePathToTerminal",
+        "title": "Send File Path to Terminal (Absolute Path)"
+      },
+      {
+        "command": "path-to-terminal.sendLastActiveFilePathToTerminal",
+        "title": "Send Last Active File Path to Terminal (Absolute Path)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "path-to-terminal.sendAbsoluteSelectionToTerminal",
+        "key": "ctrl+l",
+        "mac": "cmd+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "path-to-terminal.sendLastActiveFilePathToTerminal",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      },
+      {
+        "command": "path-to-terminal.sendAbsoluteFilePathToTerminal",
+        "args": {
+          "pathSource": "clipboard"
+        },
+        "key": "ctrl+l",
+        "mac": "cmd+l",
+        "when": "openEditorsFocus && openEditorsSelectedFileOrUntitled && resourceScheme == file"
+      },
+      {
+        "command": "path-to-terminal.sendAbsoluteFilePathToTerminal",
+        "args": {
+          "pathSource": "clipboard"
+        },
+        "key": "ctrl+l",
+        "mac": "cmd+l",
+        "when": "explorerViewletFocus && resourceScheme == file"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "path-to-terminal.sendAbsoluteFilePathToTerminal",
+          "when": "resourceSet && isFileSystemResource",
+          "group": "navigation"
+        }
+      ],
+      "openEditors/context": [
+        {
+          "command": "path-to-terminal.sendAbsoluteFilePathToTerminal",
+          "when": "resourceSet && isFileSystemResource",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "test": "npm run compile && tsx --test test/**/*.test.ts",
+    "package": "vsce package",
+    "publish:marketplace": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@types/vscode": "^1.105.0",
+    "@vscode/vsce": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3"
+  }
+}

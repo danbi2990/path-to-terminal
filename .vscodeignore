@@ -1,0 +1,9 @@
+node_modules/**
+src/**
+test/**
+out/test/**
+tsconfig.json
+*.ts
+.gitignore
+.vscode-extension-backups/**
+resources/icon-source.png
