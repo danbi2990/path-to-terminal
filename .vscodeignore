@@ -3,6 +3,7 @@ src/**
 test/**
 out/test/**
 tsconfig.json
+pnpm-lock.yaml
 *.ts
 .gitignore
 .vscode-extension-backups/**

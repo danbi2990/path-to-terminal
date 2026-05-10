@@ -5,6 +5,7 @@
   "version": "0.0.2",
   "publisher": "danbi2990",
   "license": "MIT",
+  "packageManager": "pnpm@10.33.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/danbi2990/path-to-terminal.git"
@@ -96,7 +97,7 @@
   "scripts": {
     "compile": "tsc -p .",
     "watch": "tsc -w -p .",
-    "test": "npm run compile && tsx --test test/**/*.test.ts",
+    "test": "tsc -p . && tsx --test test/**/*.test.ts",
     "package": "vsce package",
     "publish:marketplace": "vsce publish"
   },
